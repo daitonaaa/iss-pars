@@ -1,0 +1,7 @@
+{
+  "entrypoint": "http://localhost:5000",
+  "auth": {
+    "username": "daitona",
+    "password": "daitona"
+  }
+}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<script>
+  function show() {
+    const list = document.querySelector("#list");
+    list.classList.toggle('hide')
+  }
+</script>
+<h1>this body</h1>
+<button onclick="show()">show</button>
+<div id="list" class="hide">
+    <ul>
+        <li>hello</li>
+        <li>bye</li>
+        <li>sort</li>
+    </ul>
+</div>
+</body>
+</html>
