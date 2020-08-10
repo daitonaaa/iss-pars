@@ -1,7 +1,7 @@
 {
-  "entrypoint": "http://localhost:5000",
+  "entrypoint": "https://iss-expert.ru/",
   "auth": {
-    "username": "daitona",
-    "password": "daitona"
+    "username": "vlad01",
+    "password": "sto20lya07rov"
   }
 }
