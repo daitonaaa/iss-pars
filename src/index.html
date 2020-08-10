@@ -18,6 +18,21 @@
     const list = document.querySelector("#list");
     list.classList.toggle('hide')
   }
+
+  function test() {
+    document.body.style.background = "orange";
+  }
+
+  var val = '';
+  function onChangeVal(e) {
+    val = e.target.value;
+  }
+
+  function go() {
+    window.open('https://google.com', '_blank')
+  }
+
+  inp.addEventListener('change', onChangeVal);
 </script>
 <h1>this body</h1>
 <button onclick="show()">show</button>
@@ -28,5 +43,21 @@
         <li>sort</li>
     </ul>
 </div>
+<table>
+    <tbody>
+        <tr>
+            <table>
+                <tr>
+                    <td>
+                        <span onclick="test()">click me</span>
+                    </td>
+                </tr>
+            </table>
+        </tr>
+    </tbody>
+</table>
+
+<input type="text" id="inp">
+<button id="btn" onclick="go()">send</button>
 </body>
 </html>

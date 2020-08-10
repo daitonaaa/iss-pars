@@ -14,6 +14,25 @@ async function main() {
   console.log('[Puppeteer] launched')
   const page = await browser.newPage();
 
+  const getNewPageWhenLoaded =  async () => {
+    return new Promise(x =>
+      browser.on('targetcreated', async target => {
+        if (target.type() === 'page') {
+          const newPage = await target.page();
+          const newPagePromise = new Promise(y =>
+            newPage.once('domcontentloaded', () => y(newPage))
+          );
+          const isPageLoaded = await newPage.evaluate(
+            () => document.readyState
+          );
+          return isPageLoaded.match('complete|interactive')
+            ? x(newPage)
+            : x(newPagePromise);
+        }
+      })
+    );
+  };
+
   if (config.auth) {
     console.log('[Puppeteer] authenticate detect');
     await page.authenticate({
@@ -23,10 +42,22 @@ async function main() {
   }
 
   console.log('[Puppeteer] go to ', config.entrypoint);
-  await page.goto(config.entrypoint)
+  await page.goto(config.entrypoint);
 
-  console.log('[Puppeteer] create screenshot');
+  await page.waitForSelector('table');
+  const span = await page.$('table tr td span');
+  await span.click();
+
+  await page.focus('input');
+  await page.keyboard.type('test');
   await page.screenshot({ path: `${Date.now()}_screen.png` });
+
+  await page.click('#btn');
+
+  const newPagePromise = getNewPageWhenLoaded();
+  const newPage = await newPagePromise;
+
+  await newPage.screenshot({ path: `second_page.png` });
 
   await browser.close();
 }
