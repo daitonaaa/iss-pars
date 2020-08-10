@@ -11,10 +11,10 @@ async function main() {
   }
 
   const browser = await puppeteer.launch();
-  console.log('[Puppeteer] launched')
+  console.log('[Puppeteer] launched');
   const page = await browser.newPage();
 
-  const getNewPageWhenLoaded =  async () => {
+  const getNewPageWhenLoaded = async () => {
     return new Promise(x =>
       browser.on('targetcreated', async target => {
         if (target.type() === 'page') {
@@ -43,16 +43,23 @@ async function main() {
 
   console.log('[Puppeteer] go to ', config.entrypoint);
   await page.goto(config.entrypoint);
-
-  await page.waitForSelector('table');
-  const span = await page.$('table tr td span');
-  await span.click();
+  //
+  // const span = await page.$('table tr td span');
+  // await span.click();
 
   await page.focus('input');
   await page.keyboard.type('test');
   await page.screenshot({ path: `${Date.now()}_screen.png` });
 
   await page.click('#btn');
+
+  // const li = await page.$$eval('li', elements => {
+  //   for (let el of elements) {
+  //     if (el.textContent === 'li2') {
+  //       return el.textContent;
+  //     }
+  //   }
+  // });
 
   const newPagePromise = getNewPageWhenLoaded();
   const newPage = await newPagePromise;
@@ -62,4 +69,4 @@ async function main() {
   await browser.close();
 }
 
-main();
+main().then(() => console.log('Success'));

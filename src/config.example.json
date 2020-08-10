@@ -1,0 +1,7 @@
+{
+  "entrypoint": "http://some-link",
+  "auth": {
+    "username": "stub",
+    "password": "stub"
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "entrypoint": "http://localhost:5000",
-  "auth": {
-    "username": "vlad01",
-    "password": "sto20lya07rov"
-  }
-}

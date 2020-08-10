@@ -25,14 +25,17 @@
 
   var val = '';
   function onChangeVal(e) {
+    console.log(e.target.value);
     val = e.target.value;
   }
 
   function go() {
-    window.open('https://google.com', '_blank')
+    window.open('https://google.com?q=' + val, '_blank')
   }
 
-  inp.addEventListener('change', onChangeVal);
+  window.onload = () => {
+    document.querySelector('#inp').addEventListener('keydown', onChangeVal);
+  }
 </script>
 <h1>this body</h1>
 <button onclick="show()">show</button>
@@ -43,19 +46,15 @@
         <li>sort</li>
     </ul>
 </div>
-<table>
-    <tbody>
-        <tr>
-            <table>
-                <tr>
-                    <td>
-                        <span onclick="test()">click me</span>
-                    </td>
-                </tr>
-            </table>
-        </tr>
-    </tbody>
-</table>
+<p>
+    <ul>
+        <li>li1</li>
+        <li>li2</li>
+        <li>li3</li>
+        <li>li4</li>
+        <li>li5</li>
+    </ul>
+</p>
 
 <input type="text" id="inp">
 <button id="btn" onclick="go()">send</button>
